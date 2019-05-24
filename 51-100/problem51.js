@@ -36,7 +36,7 @@ In other the table tells us that 4 of those numbers are going to be divisible by
 Summary:
 - We know the last digit will never changed and will remain the same since all primes >10 end with either 3, 7, or 9.
 - We need to replace 3 numbers.
-- We therefore need a prime number with 3 repeating digits excluding trailing digit
+- We therefore need a prime number with 3 repeating digits excluding trailing digit.
 */
 
 function countOccurences(str){
