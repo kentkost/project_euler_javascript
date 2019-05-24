@@ -7,14 +7,13 @@ let nom=bigInt("3"), denom=bigInt("2"), prevNom=bigInt("1"), count=0;
 
 
 for(let i=0; i<1000; i++){
-    let newDenom =denom.plus(prevNom)
-    let newNom=nom.multiply(2).plus(denom)
-    console.log(newNom+"/"+newDenom);
-    if(newNom.toString().length > newDenom.toString().length){
+    denom =denom.plus(nom)
+    let tmpNewNom=nom.multiply(2).plus(prevNom)
+    // console.log(newNom+"/"+denom+"\t:"+prevNom);
+    prevNom = nom; //a bit backwards
+    nom=tmpNewNom;
+    if(nom.toString().length> denom.toString().length){
         count++;
     }
-    nom = newNom;
-    denom = newDenom;
-    prevNom = nom;
 }
-console.log(count/2);
+console.log(count);
