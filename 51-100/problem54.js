@@ -211,29 +211,4 @@ function handAnalyzer(hand){
     return {"hand":ha, "rank": rank}
 }
 
-function rankToString(rank){
-    switch(rank){
-        case 1:
-            return "High Card";
-        case 2:
-            return "One pair";
-        case 3:
-            return "Two pair";
-        case 4:
-            return "Three of a kind";
-        case 5:
-            return "Straight";
-        case 6:
-            return "Flush";
-        case 7:
-            return "Full house"
-        case 8:
-            return "Four of kind"
-        case 9:
-            return "Straight Flush";
-        default:
-            return "No hand?"
-    }
-}
-
 solution();
