@@ -48,12 +48,10 @@ function readPlay(s){
     let show = s;
     let p1, p2;
     p1 = show.substr(0, show.length/2).split(" ");
-    h1 = handRank(p1);
-    p1 =p1.sort(compareNumber)
+    p1 = handRank(p1);
     p2 = show.substr(show.length/2+1).split(" ");
-    h2 = handRank(p2);
-    p2 = p2.sort(compareNumber)
-    return winner(h1,h2);
+    p2 = handRank(p2);
+    return winner(p1,p2);
 }
 
 function winner(hand1, hand2){
@@ -197,11 +195,11 @@ function handAnalyzer(hand){
         else if(tmp == 3){
             rank = 4
         }
-        else if(tmp == 2){
-            if(rank == 4){
-                rank = 7;
-            }else if(rank == 2){
-                rank =3;
+        else if(tmp == 2){ //if a pair is currently being added to hand
+            if(rank == 4){ //Already 3 of a kind exists in hand
+                rank = 7; //new rank is full house
+            }else if(rank == 2){ //alread a pair exists in hand
+                rank =3; // new rank is two pairs
             }
             else{
                 rank = 2
