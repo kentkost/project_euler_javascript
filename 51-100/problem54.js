@@ -126,7 +126,7 @@ function isStraight(hand){
         order.push(cardValue(h[i][0]));
     }
     check.push(order);
-    //there's an ACe check forward and backward
+    //there's an Ace check forward and backward
     if(order[0] == 14){
         let aceEnd = order.slice(1);
         aceEnd.push(1);
