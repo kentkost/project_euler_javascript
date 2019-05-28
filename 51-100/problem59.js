@@ -123,12 +123,12 @@ function solution(){
             console.log(key);
             console.log(str);
             console.log(sumString(str));
-            return 0;
+            break;
         }
         key = incrementKey(key);
-        if(typeof key === 'string'){
+        if(typeof key === 'string'){ //means we tried all keys.
+            console.log("Found nothing");
             break;
-            
         }
     }
 }
