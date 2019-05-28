@@ -31,7 +31,6 @@ function incrementKey(key){
     }
 }
 function readCipher(){
-    // First I want to read the file
     let path ="project_euler_javascript/51-100/p059_cipher.txt"
     let res = []
     content = fs.readFileSync(path);
@@ -43,7 +42,6 @@ function readCipher(){
 }
 
 function readWords() {
-    // First I want to read the file
     let path ="project_euler_javascript/51-100/p042_words.txt"
     let res = []
     content = fs.readFileSync(path);
@@ -76,7 +74,6 @@ function decipher(k){
     let keys = k;
     let keyIndex= 0;
     let decipherStr = "";
-    let goNuts =false;
     for(let i=0; i<cipher.length; i++){
         let key = keys[keyIndex % 3];
         let cur = parseInt(cipher[i]); 
@@ -84,15 +81,15 @@ function decipher(k){
         keyIndex++;
     }
     let upperDeciphered = decipherStr.toUpperCase();
-    let threshold = 0;
+    let matchedWords = 0;
     for(let i=0; i<words.length; i++){
         if(words[i].length <5){
             continue;
         }
         if(upperDeciphered.indexOf(words[i]) >=0){
-            threshold++;
+            matchedWords++;
         }
-        if(threshold >2){ //2 words in text with over 5 characters. most likely a decrypted text;
+        if(matchedWords >2){ //2 words in text with over 5 characters. most likely a decrypted text;
             return decipherStr;
         }
     }
