@@ -30,7 +30,7 @@ function incrementKey(key){
         }
     }
 }
-function readText(){
+function readCipher(){
     // First I want to read the file
     let path ="project_euler_javascript/51-100/p059_cipher.txt"
     let res = []
@@ -120,7 +120,7 @@ function sumString(str){
 function solution(){
     let key = [97,97,97];
     let str = "";
-    cipher = readText();
+    cipher = readCipher();
     words = readWords();
     for(let i=0; i<Math.pow(26,3); i++){
         str = decipher(key);
