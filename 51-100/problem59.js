@@ -30,21 +30,6 @@ function incrementKey(key){
         }
     }
 }
-
-// function readText(){ //Async
-//     let path ="project_euler_javascript/51-100/p059_cipher.txt"
-//     let str = "";
-//     fs.readFile(path, (err, data) => {
-//         if (err) throw err;
-//         data = data.toString().split(",");
-//         data.forEach( function(element, index, arr) {
-//             let temp = parseInt(element,10).toString(2);
-//             temp = padding(temp);
-//             str+= temp;
-//         });
-//     });
-//     return str;
-// }
 function readText(){
     // First I want to read the file
     let path ="project_euler_javascript/51-100/p059_cipher.txt"
