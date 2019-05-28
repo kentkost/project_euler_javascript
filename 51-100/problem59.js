@@ -13,14 +13,6 @@ String.prototype.replaceAll = function(oldStr, newStr){
     return temp2;
 }
 
-function padding(str){
-    let s = str;
-    while(s.length != 8){
-        s = "0"+s;
-    }
-    return s;
-}
-
 function incrementKey(key){
     let k= key.slice(0);
     for(let i=2; i>=0; i--){
@@ -60,9 +52,7 @@ function readText(){
     content = fs.readFileSync(path);
     content =content.toString().split(",");
     for(let i =0; i< content.length; i++){
-        let temp = parseInt(content[i]).toString(2);
-        temp = padding(temp);
-        res.push(temp);
+        res.push(parseInt(content[i]));
     }
     return res;
 }
@@ -79,45 +69,13 @@ function readWords() {
     }
     return res;
 }
-function expandString(str, expand=485){
-    let s = str; 
-    let e=expand;
-    let res=""
-    for(let i=0; i<expand; i++){
-        res = res + s;
-    }
-    return res;
-}
-//modified slightly to work with substrings. Hopefully it will do the trick.
-function binarySearch (list, value) {
-    // initial values for start, middle and end
-    let start = 0
-    let stop = list.length - 1
-    let middle = Math.floor((start + stop) / 2)
-  
-    // While the middle is not what we're looking for and the list does not have a single item
-    while (list[middle].substring(0, value.length) !== value && start < stop) {
-      if (value < list[middle]) {
-        stop = middle - 1
-      } else {
-        start = middle + 1
-      }
-  
-      // recalculate middle on every iteration
-      middle = Math.floor((start + stop) / 2)
-    }
-    // if the current middle item is what we're looking for return it's index, else return -1
-    return (list[middle].substring(0, value.length) !== value) ? -1 : middle
-}
-
 //this gives us an idea of what the possible key can be. 80 is the most encrpted.
 //this means that 80 is most likely "69"(E) or "101"(e), or space if space is included.
 //so the key is most likely 
 //could expand with letter probability analysis using the word list
 // k = 80 xor 69  =21
 // k = 80 xor 101 =53
-// k = 80 xor 32  =112
-//possibly even space
+// k = 80 xor 32  =112 //possibly even space
 function preliminaryAnalysis(m){
     let message = m;
     let count = new Map([...new Set(message)].map(
@@ -128,34 +86,16 @@ function preliminaryAnalysis(m){
     return count;
 }
 
-function xor(c,k){
-    let char = c;
-    let key = k;
-    let xor = "";
-    for(let i=0; i<char.length; i++){
-        if(char[i] == k[i]){
-            xor += "0";
-        }
-        else{
-            xor+= "1";
-        }
-    }
-    return String.fromCharCode(parseInt(xor,2));
-}
-
 //actual bruteforce without guessing.
 function decipher(k){
     let keys = k;
     let keyIndex= 0;
     let decipherStr = "";
-    let currentWord = "";
     let goNuts =false;
     for(let i=0; i<cipher.length; i++){
-        let key = keys[keyIndex % 3].toString(2);
-        key = padding(key);
-        let cur = cipher[i].toString(2);
-        cur = padding(cur);
-        decipherStr += xor(cur,key);
+        let key = keys[keyIndex % 3];
+        let cur = parseInt(cipher[i]); 
+        decipherStr += String.fromCharCode(key^cur);
         keyIndex++;
     }
     let upperDeciphered = decipherStr.toUpperCase();
@@ -197,7 +137,6 @@ function solution(){
     let str = "";
     cipher = readText();
     words = readWords();
-    console.log(preliminaryAnalysis(cipher))
     for(let i=0; i<Math.pow(26,3); i++){
         str = decipher(key);
         if(str.length > 0){
@@ -215,4 +154,4 @@ function solution(){
 }
 
 solution();
-//aprox 7 seconds.
+//aprox 3 seconds
