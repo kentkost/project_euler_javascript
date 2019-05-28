@@ -15,13 +15,13 @@ String.prototype.replaceAll = function(oldStr, newStr){
 function incrementKey(key){
     let k= key.slice(0);
     for(let i=2; i>=0; i--){
-        for(let j=k[i]; j<123; j++){
+        for(let j=k[i]; j<123; j++){ //this is the weirdest nested loop I've ever made.
             if(k[i] == 122){
                 if(i==0){
                     return "all keys tried";
                 }
                 k[i] =97;
-                break;
+                break; //Most important thing to take note of. It breaks out and increments the next cell instead
             }else{
                 k[i]+=1
                 return k;
