@@ -1,4 +1,3 @@
-let keyStr ="";
 let cipher ="";
 let words = [];
 var fs = require("fs")
@@ -93,7 +92,6 @@ function decipher(k){
             return decipherStr;
         }
     }
-
     return "";
 }
 
