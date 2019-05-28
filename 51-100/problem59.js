@@ -214,9 +214,5 @@ function solution(){
     }
 }
 
-// solution();
+solution();
 //aprox 7 seconds.
-
-let a =80;
-let b =112;
-console.log(a^b)
