@@ -184,11 +184,20 @@ function sumString(str){
     return res;
 }
 
+//can be improved by implementing a guess method.
+//where the key will start from a guess position.
+//  say: 80 is the most occuring character then: 80 ^ key = 32(space)
+//  therefore a good guess would be that one of he subkeys are 112. since 80^112=32
+//Have guesses. [112, 97,97], [97,112,97], [97,97,112]. 
+//Change the increment method to not increment the guess cell.
+//Allow overflow in key now. And take note of start key. When it overflow to the startkey again it is done.
+//if all guesses fail. then bruteforce.
 function solution(){
     let key = [97,97,97];
     let str = "";
     cipher = readText();
     words = readWords();
+    console.log(preliminaryAnalysis(cipher))
     for(let i=0; i<Math.pow(26,3); i++){
         str = decipher(key);
         if(str.length > 0){
@@ -205,4 +214,9 @@ function solution(){
     }
 }
 
-solution();
+// solution();
+//aprox 7 seconds.
+
+let a =80;
+let b =112;
+console.log(a^b)
