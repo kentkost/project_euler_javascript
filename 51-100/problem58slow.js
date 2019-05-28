@@ -121,6 +121,7 @@ function ratioOfPrimes(values, primes){
 //4000 in 2200 seconds
 //Exit at 4177 with a ratio of 9.996408475996647...
 //And apparently that was wrong. Most likely ran out of primenumbers to check
+//Even if I improved the speed it would most likely run out of memory. No point
 function solution(){
     primes = primeGenerator(10000000);
     for(let len=4173; len<30000; len+=2){
