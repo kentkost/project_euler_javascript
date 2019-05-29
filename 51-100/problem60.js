@@ -95,5 +95,9 @@ function solution(){
     }
     return sum;
 }
-//Very slow. 161 seconds.
+//Very slow. 161 secondsto check all. but 11 seconds to find first.
 console.log(solution());
+
+//alternative solution?
+//Clique problem?
+//Create graph. find all clique-5?
