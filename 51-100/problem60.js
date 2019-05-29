@@ -67,30 +67,25 @@ const arrSum = arr => arr.reduce((a,b) =>a+b,0);
 function solution(){
     primes = primeGenerator(10000);//pure guess upperbound. if the sum goes beyond the largest primenumber in list run again.
     let test = [];
-    let sum = 0;
+    let sum = Number.MAX_SAFE_INTEGER;
     start:
-    for(let i=1; i<primes[i]; i++){ //We check for one prime
-        for(let j=i+1; j<primes.length; j++){ //We find all the possible pairs for one prime
+    for(let i=1; i<primes[i] && primes[i] < sum; i++){ //We check for one prime
+        for(let j=i+1; j<primes.length && primes[j] < sum; j++){ //We find all the possible pairs for one prime
             test = [primes[i],primes[j]];
-            if(!(isPairs(test))){continue;}
-            for(let k=j+1; k<primes.length; k++){
+            if(!(isPairs(test)) || primes[j] > sum){continue;}
+            for(let k=j+1; k<primes.length && primes[k] < sum; k++){
                 test = [primes[i],primes[j],primes[k]];
-                if(!(isPairs(test))){continue;}
-                for(let l=k+1; l<primes.length; l++){
+                if(!(isPairs(test)) || primes[k] > sum){continue;}
+                for(let l=k+1; l<primes.length && primes[k] < sum; l++){
                     test = [primes[i],primes[j],primes[k],primes[l]];
-                    if(!(isPairs(test))){continue;}
-                    for(let m=l+1; m<primes.length; m++){
-                        // test = [primes[i],primes[j],primes[k],primes[l]];
+                    if(!(isPairs(test)) || primes[l] > sum){continue;}
+                    for(let m=l+1; m<primes.length && primes[m] < sum; m++){
                         test = [primes[i],primes[j],primes[k],primes[l], primes[m]];
-                        // console.log([primes[i],primes[j],primes[k],primes[l]]);
                         if(isPairs(test)){
                             let newSum = arrSum(test);
-                            if(newSum > sum){
+                            if(newSum > sum || sum ==Number.MAX_SAFE_INTEGER){
                                 sum = newSum;
                                 console.log(sum);
-                            }
-                            if(primes[i] > sum){
-                                break start;
                             }
                         }
                     }
@@ -98,12 +93,7 @@ function solution(){
             }
         }
     }
-    console.log(sum);
+    return sum;
 }
-//Very slow. But within one minnute. So good enough?
-solution();
-
-// pairs = {};
-
-// pairs[[3,7]] =true;
-// console.log(pairs[[3,7]]);
+//Very slow. 161 seconds.
+console.log(solution());
