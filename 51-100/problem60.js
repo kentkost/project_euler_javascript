@@ -68,7 +68,6 @@ function solution(){
     primes = primeGenerator(10000);//pure guess upperbound. if the sum goes beyond the largest primenumber in list run again.
     let test = [];
     let sum = Number.MAX_SAFE_INTEGER;
-    start:
     for(let i=1; i<primes[i] && primes[i] < sum; i++){ //We check for one prime
         for(let j=i+1; j<primes.length && primes[j] < sum; j++){ //We find all the possible pairs for one prime
             test = [primes[i],primes[j]];
